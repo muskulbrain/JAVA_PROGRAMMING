@@ -1,2 +1,2 @@
 # JAVA_PROGRAMMING
-Java programming foe QA 
+Java programming fore QA 
