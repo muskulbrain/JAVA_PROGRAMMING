@@ -1,4 +1,6 @@
-public class Program {
+package SW.newPackage;
+
+public class Point {
 
   public static void main(String[] args) {
 
