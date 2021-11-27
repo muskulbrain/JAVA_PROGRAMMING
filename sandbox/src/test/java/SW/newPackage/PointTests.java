@@ -21,11 +21,5 @@ public class PointTests {
       PointsData S = new PointsData(2,2,7,6);
       assert S.distance() == 10;
     }
-    @Test
-    public void testInequality1 () {
-
-      PointsData S = new PointsData(2, 2, 7, 6);
-      Assert.assertEquals (S.distance()), 10.0;
-    }
 
 }
