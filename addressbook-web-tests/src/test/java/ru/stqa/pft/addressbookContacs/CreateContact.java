@@ -1,6 +1,9 @@
 package ru.stqa.pft.addressbookContacs;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -10,47 +13,71 @@ import java.util.concurrent.TimeUnit;
 
 public class CreateContact {
   private WebDriver wd;
-  private JavascriptExecutor js;
 
   @BeforeMethod(alwaysRun = true)
   public void setUp() throws Exception {
     wd = new ChromeDriver();
     wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-    js = (JavascriptExecutor) wd;
+    wd.get("http://localhost/addressbook/");
+    login("admin", "secret");
   }
 
   @Test
   public void testContactCreation() throws Exception {
-    wd.get("http://localhost/addressbook/");
-    wd.findElement(By.name("user")).click();
-    wd.findElement(By.name("user")).clear();
-    wd.findElement(By.name("user")).sendKeys("admin");
-    wd.findElement(By.id("LoginForm")).click();
-    wd.findElement(By.name("pass")).click();
-    wd.findElement(By.name("pass")).clear();
-    wd.findElement(By.name("pass")).sendKeys("secret");
-    wd.findElement(By.xpath("//input[@value='Login']")).click();
-    wd.findElement(By.linkText("add new")).click();
-    wd.findElement(By.name("firstname")).click();
-    wd.findElement(By.name("firstname")).clear();
-    wd.findElement(By.name("firstname")).sendKeys("Test");
-    wd.findElement(By.name("lastname")).click();
-    wd.findElement(By.name("lastname")).clear();
-    wd.findElement(By.name("lastname")).sendKeys("Test");
-    wd.findElement(By.name("home")).click();
-    wd.findElement(By.name("home")).clear();
-    wd.findElement(By.name("home")).sendKeys("+79999999");
-    wd.findElement(By.name("email")).click();
-    wd.findElement(By.name("email")).clear();
-    wd.findElement(By.name("email")).sendKeys("test@mail.com");
-    wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
-    wd.findElement(By.linkText("home page")).click();
-    wd.findElement(By.linkText("Logout")).click();
+
+    goToContactPage("add new");
+    fillContactForm(new ContactData("Test", "Test", "+79999999", "test@mail.com"));
+    submitContactCreation("//div[@id='content']/form/input[21]");
+    returnToHomePage("home page");
+
   }
 
   @AfterMethod(alwaysRun = true)
   public void tearDown() throws Exception {
+    logOut("Logout");
     wd.quit();
+  }
+
+  private void login(String userName, String password) {
+    wd.findElement(By.name("user")).click();
+    wd.findElement(By.name("user")).clear();
+    wd.findElement(By.name("user")).sendKeys(userName);
+    wd.findElement(By.id("LoginForm")).click();
+    wd.findElement(By.name("pass")).click();
+    wd.findElement(By.name("pass")).clear();
+    wd.findElement(By.name("pass")).sendKeys(password);
+    wd.findElement(By.xpath("//input[@value='Login']")).click();
+  }
+
+  private void returnToHomePage(String s) {
+    wd.findElement(By.linkText(s)).click();
+  }
+
+  private void submitContactCreation(String s) {
+    wd.findElement(By.xpath(s)).click();
+  }
+
+  private void goToContactPage(String s) {
+    wd.findElement(By.linkText(s)).click();
+  }
+
+  private void fillContactForm(ContactData contactData) {
+    wd.findElement(By.name("firstname")).click();
+    wd.findElement(By.name("firstname")).clear();
+    wd.findElement(By.name("firstname")).sendKeys(contactData.getName());
+    wd.findElement(By.name("lastname")).click();
+    wd.findElement(By.name("lastname")).clear();
+    wd.findElement(By.name("lastname")).sendKeys(contactData.getLastName());
+    wd.findElement(By.name("home")).click();
+    wd.findElement(By.name("home")).clear();
+    wd.findElement(By.name("home")).sendKeys(contactData.getPhone());
+    wd.findElement(By.name("email")).click();
+    wd.findElement(By.name("email")).clear();
+    wd.findElement(By.name("email")).sendKeys(contactData.getEmail());
+  }
+
+  private void logOut(String logout) {
+    wd.findElement(By.linkText(logout)).click();
   }
 
   private boolean isElementPresent(By by) {
