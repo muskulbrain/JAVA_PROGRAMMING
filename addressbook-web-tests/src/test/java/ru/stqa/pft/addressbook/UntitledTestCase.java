@@ -25,11 +25,11 @@ public class UntitledTestCase {
   @Test
   public void testUntitled() throws Exception {
 
-    goToGroupPage("groups");
-    initGroupCreation("new");
+    goToGroupPage();
+    initGroupCreation();
     fillGroupForm(new GroupData("Test1", "Test3", "Test2"));
-    submitGroupCreation("submit");
-    returnToGroupPage("group page");
+    submitGroupCreation();
+    returnToGroupPage();
 
   }
 
@@ -39,12 +39,12 @@ public class UntitledTestCase {
     wb.quit();
   }
 
-  private void returnToGroupPage(String s) {
-    logOut(s);
+  private void returnToGroupPage() {
+    wb.findElement(By.linkText("group page")).click();
   }
 
-  private void submitGroupCreation(String submit) {
-    wb.findElement(By.name(submit)).click();
+  private void submitGroupCreation() {
+    wb.findElement(By.name("submit")).click();
   }
 
   private void fillGroupForm(GroupData groupData) {
@@ -59,12 +59,13 @@ public class UntitledTestCase {
     wb.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
   }
 
-  private void initGroupCreation(String s) {
-    wb.findElement(By.name(s)).click();
+  private void initGroupCreation() {
+    wb.findElement(By.name("new")).click();
   }
 
-  private void goToGroupPage(String groups) {
-    logOut(groups);
+
+  private void goToGroupPage() {
+    wb.findElement(By.linkText("groups")).click();
   }
 
   private void login(String username, String password) {

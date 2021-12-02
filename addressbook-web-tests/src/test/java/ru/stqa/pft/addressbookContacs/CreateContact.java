@@ -25,10 +25,10 @@ public class CreateContact {
   @Test
   public void testContactCreation() throws Exception {
 
-    goToContactPage("add new");
+    goToContactPage();
     fillContactForm(new ContactData("Test", "Test", "+79999999", "test@mail.com"));
-    submitContactCreation("//div[@id='content']/form/input[21]");
-    returnToHomePage("home page");
+    submitContactCreation();
+    returnToHomePage();
 
   }
 
@@ -49,17 +49,18 @@ public class CreateContact {
     wd.findElement(By.xpath("//input[@value='Login']")).click();
   }
 
-  private void returnToHomePage(String s) {
-    wd.findElement(By.linkText(s)).click();
+  private void returnToHomePage() {
+    wd.findElement(By.linkText("home page")).click();
   }
 
-  private void submitContactCreation(String s) {
-    wd.findElement(By.xpath(s)).click();
+  private void submitContactCreation() {
+    wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
   }
 
-  private void goToContactPage(String s) {
-    wd.findElement(By.linkText(s)).click();
-  }
+    private void goToContactPage() {
+    wd.findElement(By.linkText("add new")).click();
+            }
+
 
   private void fillContactForm(ContactData contactData) {
     wd.findElement(By.name("firstname")).click();
