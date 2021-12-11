@@ -1,17 +1,17 @@
 package ru.stqa.pft.addressbookContacs;
 
 import org.testng.annotations.Test;
-import ru.stqa.pft.addressbook.TestBase;
+import ru.stqa.pft.tests.TestBase;
 
 public class ContactDeletionTests extends TestBase {
 
   @Test
   public void testContactDeletion()  {
 
-    goToHomePage();
-    chooseCheckbox();
-    deleteSelectedContact();
-    closeTheDialog();
+    app.goToHomePage();
+    app.chooseCheckbox();
+    app.deleteSelectedContact();
+    app.closeTheDialog();
   }
 
 }
