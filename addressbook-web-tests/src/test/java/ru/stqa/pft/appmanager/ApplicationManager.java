@@ -2,7 +2,7 @@ package ru.stqa.pft.appmanager;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import ru.stqa.pft.addressbookContacs.ContactData;
+import ru.stqa.pft.model.ContactData;
 
 import java.util.concurrent.TimeUnit;
 
@@ -33,10 +33,6 @@ public class ApplicationManager {
     wd.quit();
   }
 
-  public void submitGroupCreation() {
-
-    wd.findElement(By.name("submit")).click();
-  }
 
   public void goToContactPage() {
 

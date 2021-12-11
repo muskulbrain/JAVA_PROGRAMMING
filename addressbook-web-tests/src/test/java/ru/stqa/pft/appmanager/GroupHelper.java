@@ -21,6 +21,11 @@ public class GroupHelper extends HelperBase {
     type(By.name("group_footer"), groupData.getFooter());
   }
 
+  public void submitGroupCreation() {
+
+    click(By.name("submit"));
+  }
+
   public void initGroupCreation() {
 
     click(By.name("new"));
