@@ -8,9 +8,9 @@ import java.util.concurrent.TimeUnit;
 public class ApplicationManager {
 
   WebDriver wd;
+
   private ContactHelper contactHelper;
   private SessionHelper sessionHelper;
-
   private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
 
@@ -29,40 +29,22 @@ public class ApplicationManager {
   }
 
   public void stop() {
-    logOut("Logout");
+    sessionHelper.logOut("Logout");
     wd.quit();
   }
 
-
-  public void goToContactPage() {
-
-    wd.findElement(By.linkText("add new")).click();
-  }
-
-  public void logOut(String logout) {
-
-    wd.findElement(By.linkText(logout)).click();
-  }
-
-  public void returnToHomePage() {
-
-    wd.findElement(By.linkText("home page")).click();
-  }
-
-  public void goToHomePage() {
-
-    wd.findElement(By.linkText("home")).click();
-  }
-
   public GroupHelper getGroupHelper() {
+
     return groupHelper;
   }
 
   public NavigationHelper getNavigationHelper() {
+
     return navigationHelper;
   }
 
   public ContactHelper getContactHelper() {
     return contactHelper;
   }
+
 }

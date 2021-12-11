@@ -5,13 +5,31 @@ import org.openqa.selenium.WebDriver;
 
 public class NavigationHelper extends HelperBase {
 
-  public NavigationHelper(WebDriver wd) {
+  private WebDriver wd;
 
+  public NavigationHelper(WebDriver wd) {
     super(wd);
+
+    this.wd = wd;
   }
 
   public void goToGroupPage() {
 
     click(By.linkText("groups"));
+  }
+
+  public void goToContactPage() {
+
+    wd.findElement(By.linkText("add new")).click();
+  }
+
+  public void returnToHomePage() {
+
+    wd.findElement(By.linkText("home page")).click();
+  }
+
+  public void goToHomePage() {
+
+    wd.findElement(By.linkText("home")).click();
   }
 }
