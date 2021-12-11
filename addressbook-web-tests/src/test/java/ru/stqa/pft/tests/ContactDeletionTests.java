@@ -1,7 +1,6 @@
 package ru.stqa.pft.tests;
 
 import org.testng.annotations.Test;
-import ru.stqa.pft.tests.TestBase;
 
 public class ContactDeletionTests extends TestBase {
 
@@ -9,9 +8,9 @@ public class ContactDeletionTests extends TestBase {
   public void testContactDeletion()  {
 
     app.goToHomePage();
-    app.chooseCheckbox();
-    app.deleteSelectedContact();
-    app.closeTheDialog();
+    app.getContactHelper().chooseCheckbox();
+    app.getContactHelper().deleteSelectedContact();
+    app.getContactHelper().closeTheDialog();
   }
 
 }

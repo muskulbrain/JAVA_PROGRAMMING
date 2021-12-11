@@ -7,6 +7,7 @@ import ru.stqa.pft.model.GroupData;
 public class GroupHelper extends HelperBase {
 
   public GroupHelper(WebDriver wd) {
+
     super(wd);
   }
 
