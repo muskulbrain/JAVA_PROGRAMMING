@@ -1,40 +1,22 @@
 package ru.stqa.pft.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import ru.stqa.pft.model.ContactData;
 
-public class ContactHelper {
-
- private WebDriver wd;
+public class ContactHelper extends HelperBase{
 
   public ContactHelper(WebDriver wd) {
-this.wd = wd;
+
+    super (wd);
   }
 
   public void fillContactForm(ContactData contactData) {
-    wd.findElement(By.name("firstname")).click();
-    wd.findElement(By.name("firstname")).clear();
-    wd.findElement(By.name("firstname")).sendKeys(contactData.getName());
-    wd.findElement(By.name("lastname")).click();
-    wd.findElement(By.name("lastname")).clear();
-    wd.findElement(By.name("lastname")).sendKeys(contactData.getLastName());
-    wd.findElement(By.name("home")).click();
-    wd.findElement(By.name("home")).clear();
-    wd.findElement(By.name("home")).sendKeys(contactData.getPhone());
-    wd.findElement(By.name("email")).click();
-    wd.findElement(By.name("email")).clear();
-    wd.findElement(By.name("email")).sendKeys(contactData.getEmail());
-  }
 
-  public boolean isElementPresent(By by) {
-    try {
-      wd.findElement(by);
-      return true;
-    } catch (NoSuchElementException e) {
-      return false;
-    }
+    type(By.name("firstname"), contactData.getName());
+    type(By.name("lastname"), contactData.getLastName());
+    type(By.name("home"), contactData.getPhone());
+    type(By.name("email"), contactData.getEmail());
   }
 
   public void closeTheDialog() {
@@ -44,11 +26,21 @@ this.wd = wd;
 
   public void deleteSelectedContact() {
 
-    wd.findElement(By.xpath("//input[@value='Delete']")).click();
+    click(By.xpath("//input[@value='Delete']"));
   }
 
   public void chooseCheckbox() {
 
-    wd.findElement(By.xpath("//td/input")).click();
+    click(By.xpath("//td/input"));
   }
+
+  //private void clickContact(By locator) {
+    //wd.findElement(locator).click();
+ // }
+
+  //private void typeContact(By locatorContact, String textContact) {
+  // click(locatorContact);
+  // wd.findElement(locatorContact).clear();
+  //wd.findElement(locatorContact).sendKeys(textContact);
+  //}
 }
