@@ -34,6 +34,26 @@ public class ContactHelper extends HelperBase{
     click(By.xpath("//td/input"));
   }
 
+  public void submitContactCreation() {
+
+    click(By.xpath("//div[@id='content']/form/input[21]"));
+  }
+
+  public void initContactModification() {
+
+    click(By.xpath("//img[@alt='Edit']"));
+  }
+
+  public void submitContactModification() {
+
+    click(By.xpath("//div[@id='content']/form/input[22]"));
+  }
+
+  public void goToHomePage() {
+    click(By.linkText("home"));
+  }
+
+
   //private void clickContact(By locator) {
     //wd.findElement(locator).click();
  // }
