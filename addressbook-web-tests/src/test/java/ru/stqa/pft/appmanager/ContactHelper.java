@@ -49,10 +49,6 @@ public class ContactHelper extends HelperBase{
     click(By.xpath("//div[@id='content']/form/input[22]"));
   }
 
-  public void goToHomePage() {
-    click(By.linkText("home"));
-  }
-
 
   //private void clickContact(By locator) {
     //wd.findElement(locator).click();
