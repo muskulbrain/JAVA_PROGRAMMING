@@ -6,15 +6,17 @@ import ru.stqa.pft.model.ContactData;
 public class ContactModificationTests extends TestBase {
 
   @Test
-    public void testContactModificationTests() {
+  public void testContactModificationTests() {
 
     app.getNavigationHelper().goToHomePage();
+    if (! app.getContactHelper().isThereAContact()) {
+      app.getContactHelper(). createContact(new ContactData("Test", "Test", "+79999999", "test@mail.com"));
+    }
     app.getContactHelper().initContactModification();
     app.getContactHelper().fillContactForm(new ContactData("Test", "Test", "+79999999", "test@mail.com"));
     app.getContactHelper().submitContactModification();
     app.getNavigationHelper().returnToHomePage();
   }
-
 
 
 }

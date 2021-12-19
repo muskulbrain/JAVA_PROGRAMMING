@@ -5,17 +5,18 @@ import ru.stqa.pft.model.GroupData;
 
 public class GroupModificationTests extends TestBase {
 
-@Test
+  @Test
   public void testGroupModificationTests() {
 
-  app.getNavigationHelper().goToGroupPage();
-  app.getGroupHelper().selectGroup();
-  app.getGroupHelper().initGroupModification();
-  app.getGroupHelper().fillGroupForm(new GroupData("Test1", "Test3", "Test2"));
-  app.getGroupHelper().submitGroupModification();
-}
-
-
+    app.getNavigationHelper().goToGroupPage();
+    if (! app.getGroupHelper().isThereAGroup()) {
+      app.getGroupHelper(). createGroup(new GroupData("Test1", null, null));
+    }
+    app.getGroupHelper().selectGroup();
+    app.getGroupHelper().initGroupModification();
+    app.getGroupHelper().fillGroupForm(new GroupData("Test1", "Test3", "Test2"));
+    app.getGroupHelper().submitGroupModification();
+  }
 
 
 }

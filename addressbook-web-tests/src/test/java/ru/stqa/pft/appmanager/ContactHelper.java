@@ -49,6 +49,17 @@ public class ContactHelper extends HelperBase{
     click(By.xpath("//div[@id='content']/form/input[22]"));
   }
 
+  public void createContact(ContactData contact) {
+    goToContactPage();
+    fillContactForm(contact);
+    submitContactCreation();
+    returnToHomePage();
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.xpath("//td/input"));
+  }
+
 
   //private void clickContact(By locator) {
     //wd.findElement(locator).click();

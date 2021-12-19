@@ -18,7 +18,7 @@ public class HelperBase {
     click(locator);
     if (text != null) {
       String existingText = wd.findElement(locator).getAttribute("value");
-      if (! text.equals(existingText)) {
+      if (!text.equals(existingText)) {
         wd.findElement(locator).clear();
         wd.findElement(locator).sendKeys(text);
       }
@@ -45,6 +45,16 @@ public class HelperBase {
     } catch (NoSuchElementException e) {
       return false;
     }
+  }
+
+  public void returnToHomePage() {
+
+    click(By.linkText("home page"));
+  }
+
+  public void goToContactPage() {
+
+    click(By.linkText("add new"));
   }
 
 }
