@@ -60,6 +60,10 @@ public class ContactHelper extends HelperBase{
     return isElementPresent(By.xpath("//td/input"));
   }
 
+  public int getContactCount() {
+    return wd.findElements(By.xpath("//td/input")).size();
+  }
+
 
   //private void clickContact(By locator) {
     //wd.findElement(locator).click();
