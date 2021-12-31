@@ -29,9 +29,9 @@ public class ContactHelper extends HelperBase{
     click(By.xpath("//input[@value='Delete']"));
   }
 
-  public void chooseCheckbox() {
+  public void chooseCheckbox(int index) {
 
-    click(By.xpath("//td/input"));
+    wd.findElements(By.xpath("//td/input")).get(index).click();
   }
 
   public void submitContactCreation() {
@@ -39,9 +39,9 @@ public class ContactHelper extends HelperBase{
     click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
-  public void initContactModification() {
+  public void initContactModification(int index) {
 
-    click(By.xpath("//img[@alt='Edit']"));
+    wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
   }
 
   public void submitContactModification() {

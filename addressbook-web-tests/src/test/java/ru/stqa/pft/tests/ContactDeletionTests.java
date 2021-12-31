@@ -15,7 +15,7 @@ public class ContactDeletionTests extends TestBase {
     if (! app.getContactHelper().isThereAContact()) {
       app.getContactHelper(). createContact(new ContactData("Test", "Test", "+79999999", "test@mail.com"));
     }
-    app.getContactHelper().chooseCheckbox();
+    app.getContactHelper().chooseCheckbox(before - 1);
     app.getContactHelper().deleteSelectedContact();
     app.getContactHelper().closeTheDialog();
     app.getNavigationHelper().goToHomePage();
