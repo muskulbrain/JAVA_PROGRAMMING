@@ -2,7 +2,12 @@ package ru.stqa.pft.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import ru.stqa.pft.model.ContactData;
+import ru.stqa.pft.model.GroupData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HelperBase{
 
@@ -57,11 +62,26 @@ public class ContactHelper extends HelperBase{
   }
 
   public boolean isThereAContact() {
+
     return isElementPresent(By.xpath("//td/input"));
   }
 
   public int getContactCount() {
+
     return wd.findElements(By.xpath("//td/input")).size();
+  }
+
+  public List<ContactData> getContactList() {
+    List<ContactData> contacts = new ArrayList<ContactData>();
+    List<WebElement> elements = wd.findElements(By.xpath("//td/input"));
+    for (WebElement element : elements) {
+      String name = element.getText();
+      ContactData contact = new ContactData(null, null, null, null);
+      contacts.add(contact);
+    }
+    return contacts;
+    }
+
   }
 
 
@@ -74,4 +94,4 @@ public class ContactHelper extends HelperBase{
   // wd.findElement(locatorContact).clear();
   //wd.findElement(locatorContact).sendKeys(textContact);
   //}
-}
+
