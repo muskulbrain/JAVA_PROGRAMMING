@@ -19,7 +19,7 @@ public class GroupData {
     this.name = name;
     this.footer = footer;
     this.header = header;
-    this.id = 0;
+    this.id = Integer.MAX_VALUE;
   }
 
   public void setId(int id) {
@@ -59,11 +59,11 @@ public class GroupData {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     GroupData groupData = (GroupData) o;
-    return id == groupData.id && Objects.equals(name, groupData.name);
+    return Objects.equals(name, groupData.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name);
+    return Objects.hash(name);
   }
 }
