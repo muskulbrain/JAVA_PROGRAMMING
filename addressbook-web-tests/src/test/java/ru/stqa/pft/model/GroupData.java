@@ -3,12 +3,12 @@ package ru.stqa.pft.model;
 import java.util.Objects;
 
 public class GroupData {
-  private final String id;
+  private int id;
   private final String name;
   private final String footer;
   private final String header;
 
-  public GroupData(String id, String name, String footer, String header) {
+  public GroupData(int id, String name, String footer, String header) {
     this.name = name;
     this.footer = footer;
     this.header = header;
@@ -19,10 +19,15 @@ public class GroupData {
     this.name = name;
     this.footer = footer;
     this.header = header;
-    this.id = null;
+    this.id = 0;
   }
 
-  public String getId() {
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public int getId() {
+
     return id;
   }
 
@@ -54,7 +59,7 @@ public class GroupData {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     GroupData groupData = (GroupData) o;
-    return Objects.equals(id, groupData.id) && Objects.equals(name, groupData.name);
+    return id == groupData.id && Objects.equals(name, groupData.name);
   }
 
   @Override
