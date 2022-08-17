@@ -36,5 +36,4 @@ public class ContactModificationTests extends TestBase {
     Assert.assertEquals(before, after);
   }
 
-
 }
