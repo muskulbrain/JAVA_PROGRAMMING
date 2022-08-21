@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.model.ContactData;
-import ru.stqa.pft.model.GroupData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +54,7 @@ public class ContactHelper extends HelperBase{
   }
 
   public void createContact(ContactData contact) {
-    goToContactPage();
+    contactPage();
     fillContactForm(contact);
     submitContactCreation();
     returnToHomePage();
@@ -71,7 +70,14 @@ public class ContactHelper extends HelperBase{
     return wd.findElements(By.xpath("//td/input")).size();
   }
 
-  public List<ContactData> getContactList() {
+  public void delete(int index) {
+    chooseCheckbox(index);
+    deleteSelectedContact();
+    closeTheDialog();
+    homePage();
+  }
+
+  public List<ContactData> contactList() {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {

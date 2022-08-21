@@ -52,9 +52,17 @@ public class HelperBase {
     click(By.linkText("home page"));
   }
 
-  public void goToContactPage() {
+  public void contactPage() {
 
     click(By.linkText("add new"));
+  }
+
+  public void homePage() {
+
+    if (isElementPresent(By.id("maintable"))) {
+      return;
+    }
+    click(By.linkText("home"));
   }
 
 }

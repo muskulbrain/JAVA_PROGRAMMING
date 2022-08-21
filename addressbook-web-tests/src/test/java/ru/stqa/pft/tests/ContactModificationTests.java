@@ -3,10 +3,8 @@ package ru.stqa.pft.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.model.ContactData;
-import ru.stqa.pft.model.GroupData;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class ContactModificationTests extends TestBase {
@@ -14,18 +12,18 @@ public class ContactModificationTests extends TestBase {
   @Test
   public void testContactModificationTests() {
 
-    app.getNavigationHelper().goToHomePage();
-    if (! app.getContactHelper().isThereAContact()) {
-      app.getContactHelper(). createContact(new ContactData("Test", null, null, null));
+    app.goTo().homePage();
+    if (app.contact().contactList().size () == 0) {
+      app.contact(). createContact(new ContactData("Test", null, null, null));
     }
 
-    List<ContactData> before = app.getContactHelper().getContactList();
-    app.getContactHelper().initContactModification(before.size() - 1);
+    List<ContactData> before = app.contact().contactList();
+    app.contact().initContactModification(before.size() - 1);
     ContactData contact = new ContactData(before.get(before.size() - 1).getId(),"Test", null, null, null);
-    app.getContactHelper().fillContactForm(contact);
-    app.getContactHelper().submitContactModification();
-    app.getNavigationHelper().returnToHomePage();
-    List<ContactData> after = app.getContactHelper().getContactList();
+    app.contact().fillContactForm(contact);
+    app.contact().submitContactModification();
+    app.goTo().returnToHomePage();
+    List<ContactData> after = app.contact().contactList();
     Assert.assertEquals(after.size(), before.size());
 
     before.remove(before.size() - 1);
