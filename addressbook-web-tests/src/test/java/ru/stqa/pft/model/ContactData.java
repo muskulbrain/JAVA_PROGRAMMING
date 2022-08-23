@@ -3,26 +3,36 @@ package ru.stqa.pft.model;
 import java.util.Objects;
 
 public class ContactData {
-  private final String name;
-  private final String lastName;
-  private final String phone;
-  private final String email;
-  private int id;
+  private String name;
+  private String lastName;
+  private String phone;
+  private  String email;
 
-  public ContactData(int id, String name, String lastName, String phone, String email) {
+  private int id=Integer.MAX_VALUE;
+
+  public ContactData withName(String name) {
     this.name = name;
-    this.lastName = lastName;
-    this.phone = phone;
-    this.email = email;
-    this.id = id;
+    return this;
   }
 
-  public ContactData(String name, String lastName, String phone, String email) {
-    this.name = name;
+  public ContactData withLastName(String lastName) {
     this.lastName = lastName;
+    return this;
+  }
+
+  public ContactData withPhone(String phone) {
     this.phone = phone;
+    return this;
+  }
+
+  public ContactData withEmail(String email) {
     this.email = email;
-    this.id = Integer.MAX_VALUE;
+    return this;
+  }
+
+  public ContactData withId(int id) {
+    this.id = id;
+    return this;
   }
 
   public String getName() {
@@ -43,10 +53,6 @@ public class ContactData {
   public String getEmail() {
 
     return email;
-  }
-
-  public void setId(int id) {
-    this.id = id;
   }
 
   public int getId() {

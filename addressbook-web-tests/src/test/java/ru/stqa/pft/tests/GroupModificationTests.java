@@ -14,13 +14,14 @@ public class GroupModificationTests extends TestBase {
 
     app.goTo().groupPage();
     if (app.group().groupList().size () == 0) {
-      app.group().Create(new GroupData("Test1", null, null));
+      app.group().Create(new GroupData().withName("Test1"));
     }
 
     List<GroupData> before = app.group().groupList();
     app.group().selectGroup(before.size() - 1);
     app.group().initGroupModification();
-    GroupData group = new GroupData(before.get(before.size() - 1).getId(), "Test1", null, null);
+    GroupData group = new GroupData()
+            .withId(before.get(before.size() - 1).getId()).withName("Test1"). withHeader(null).withFooter(null);
     app.group().fillGroupForm(group);
     app.group().submitGroupModification();
     app.group().returnToGroupPage();

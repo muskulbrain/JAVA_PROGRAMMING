@@ -13,7 +13,8 @@ public class ContactDeletionTests extends TestBase {
 
     app.goTo().homePage();
     if (app.contact().contactList().size () == 0) {
-      app.contact(). createContact(new ContactData("Test", "Test", "+79999999", "test@mail.com"));
+      app.contact(). createContact(new ContactData()
+              .withName("Test").withLastName("Test").withPhone("+79999999").withEmail("test@mail.com"));
     }
     List<ContactData> before = app.contact().contactList();
     int index = before.size() -1;
