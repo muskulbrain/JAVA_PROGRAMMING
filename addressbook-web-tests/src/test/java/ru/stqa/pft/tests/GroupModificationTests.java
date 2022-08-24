@@ -6,6 +6,7 @@ import ru.stqa.pft.model.GroupData;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 public class GroupModificationTests extends TestBase {
 
@@ -13,29 +14,23 @@ public class GroupModificationTests extends TestBase {
   public void testGroupModificationTests() {
 
     app.goTo().groupPage();
-    if (app.group().groupList().size () == 0) {
+    if (app.group().all().size () == 0) {
       app.group().Create(new GroupData().withName("Test1"));
     }
 
-    List<GroupData> before = app.group().groupList();
-    app.group().selectGroup(before.size() - 1);
+    Set<GroupData> before = app.group().all();
+    GroupData modifiedGroup = before.iterator().next();
     app.group().initGroupModification();
     GroupData group = new GroupData()
-            .withId(before.get(before.size() - 1).getId()).withName("Test1"). withHeader(null).withFooter(null);
-    app.group().fillGroupForm(group);
-    app.group().submitGroupModification();
-    app.group().returnToGroupPage();
-    List<GroupData> after = app.group().groupList();
+            .withId(modifiedGroup.getId()).withName("Test1"). withHeader(null).withFooter(null);
+    app.group().modify(group);
+    Set<GroupData> after = app.group().all();
     Assert.assertEquals(after.size(), before.size());
 
-    before.remove(before.size() - 1);
+    before.remove(modifiedGroup);
     before.add(group);
-    Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
-    before.sort(byId);
-    after.sort(byId);
     Assert.assertEquals(before, after);
 
   }
-
 
 }
