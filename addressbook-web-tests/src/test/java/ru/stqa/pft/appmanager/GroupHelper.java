@@ -63,7 +63,6 @@ public class GroupHelper extends HelperBase {
     click(By.name("update"));
   }
 
-
   public void Create(GroupData group) {
     initGroupCreation();
     fillGroupForm(group);
@@ -78,6 +77,8 @@ public class GroupHelper extends HelperBase {
   }
 
   public void modify(GroupData group) {
+   selectGroupById(group.getId());
+   initGroupModification();
    fillGroupForm(group);
    submitGroupModification();
    returnToGroupPage();

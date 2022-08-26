@@ -74,11 +74,11 @@ public class ContactData {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ContactData that = (ContactData) o;
-    return Objects.equals(name, that.name) && Objects.equals(lastName, that.lastName);
+    return id == that.id && Objects.equals(name, that.name) && Objects.equals(lastName, that.lastName) && Objects.equals(phone, that.phone) && Objects.equals(email, that.email);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, lastName);
+    return Objects.hash(name, lastName, phone, email, id);
   }
 }

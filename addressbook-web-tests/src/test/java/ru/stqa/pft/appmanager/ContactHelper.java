@@ -4,9 +4,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.model.ContactData;
+import ru.stqa.pft.model.GroupData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase{
 
@@ -36,6 +39,11 @@ public class ContactHelper extends HelperBase{
   public void chooseCheckbox(int index) {
 
     wd.findElements(By.xpath("//td/input")).get(index).click();
+  }
+
+  public void chooseCheckboxById(int id) {
+
+    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
 
   public void submitContactCreation() {
@@ -77,6 +85,13 @@ public class ContactHelper extends HelperBase{
     homePage();
   }
 
+  public void delete(ContactData Contact) {
+    chooseCheckboxById(Contact.getId());
+    deleteSelectedContact();
+    closeTheDialog();
+    homePage();
+  }
+
   public List<ContactData> contactList() {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.name("entry"));
@@ -90,7 +105,21 @@ public class ContactHelper extends HelperBase{
     return contacts;
     }
 
+
+  public Set<ContactData> all() {
+    Set<ContactData> contacts = new HashSet<ContactData>();
+    List<WebElement> elements = wd.findElements(By.name("entry"));
+    for (WebElement element : elements) {
+      List<WebElement> cells = element.findElements(By.tagName("td"));
+      String name = cells.get(2).getText();
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      ContactData contact = new ContactData().withId(id).withName(name).withLastName(null).withPhone(null).withEmail(null);
+      contacts.add(contact);
+    }
+    return contacts;
   }
+
+}
 
 
 

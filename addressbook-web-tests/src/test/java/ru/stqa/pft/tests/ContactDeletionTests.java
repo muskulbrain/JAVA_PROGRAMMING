@@ -3,8 +3,10 @@ package ru.stqa.pft.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.model.ContactData;
+import ru.stqa.pft.model.GroupData;
 
 import java.util.List;
+import java.util.Set;
 
 public class ContactDeletionTests extends TestBase {
 
@@ -16,13 +18,13 @@ public class ContactDeletionTests extends TestBase {
       app.contact(). createContact(new ContactData()
               .withName("Test").withLastName("Test").withPhone("+79999999").withEmail("test@mail.com"));
     }
-    List<ContactData> before = app.contact().contactList();
-    int index = before.size() -1;
-    app.contact().delete(index);
-    List<ContactData> after = app.contact().contactList();
+    Set<ContactData> before = app.contact().all();
+    ContactData deletedContact = before.iterator().next();
+    app.contact().delete(deletedContact);
+    Set<ContactData> after = app.contact().all();
     Assert.assertEquals(after.size(), before.size() -1);
 
-    before.remove(index);
+    before.remove(deletedContact);
     Assert.assertEquals(before, after);
   }
 

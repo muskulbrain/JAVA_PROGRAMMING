@@ -20,9 +20,9 @@ public class GroupModificationTests extends TestBase {
 
     Set<GroupData> before = app.group().all();
     GroupData modifiedGroup = before.iterator().next();
-    app.group().initGroupModification();
     GroupData group = new GroupData()
             .withId(modifiedGroup.getId()).withName("Test1"). withHeader(null).withFooter(null);
+    app.goTo().groupPage();
     app.group().modify(group);
     Set<GroupData> after = app.group().all();
     Assert.assertEquals(after.size(), before.size());
