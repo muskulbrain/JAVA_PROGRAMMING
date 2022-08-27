@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.model.ContactData;
-import ru.stqa.pft.model.GroupData;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -51,9 +50,15 @@ public class ContactHelper extends HelperBase{
     click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
-  public void initContactModification(int index) {
+  public void initContactModification(int id) {
 
-    wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
+    wd.findElement(By.cssSelector("a[href='edit.php?id=" + id + "']")).click();
+  }
+
+  public void selectContactById(int id) {
+    if (wd.findElement(By.cssSelector("input[value='" + id + "']")).isDisplayed()) {
+      wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+    }
   }
 
   public void submitContactModification() {
@@ -85,11 +90,19 @@ public class ContactHelper extends HelperBase{
     homePage();
   }
 
-  public void delete(ContactData Contact) {
-    chooseCheckboxById(Contact.getId());
+  public void delete(ContactData contact) {
+    selectContactById(contact.getId());
     deleteSelectedContact();
     closeTheDialog();
     homePage();
+  }
+
+  public void modify(ContactData contact) {
+    selectContactById(contact.getId());
+    initContactModification(contact.getId());
+    fillContactForm(contact);
+    submitContactModification();
+    returnToHomePage();
   }
 
   public List<ContactData> contactList() {
