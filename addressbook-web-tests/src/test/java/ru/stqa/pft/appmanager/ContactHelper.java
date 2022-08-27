@@ -35,16 +35,6 @@ public class ContactHelper extends HelperBase{
     click(By.xpath("//input[@value='Delete']"));
   }
 
-  public void chooseCheckbox(int index) {
-
-    wd.findElements(By.xpath("//td/input")).get(index).click();
-  }
-
-  public void chooseCheckboxById(int id) {
-
-    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
-  }
-
   public void submitContactCreation() {
 
     click(By.xpath("//div[@id='content']/form/input[21]"));
@@ -66,13 +56,6 @@ public class ContactHelper extends HelperBase{
     click(By.xpath("//div[@id='content']/form/input[22]"));
   }
 
-  public void createContact(ContactData contact) {
-    contactPage();
-    fillContactForm(contact);
-    submitContactCreation();
-    returnToHomePage();
-  }
-
   public boolean isThereAContact() {
 
     return isElementPresent(By.xpath("//td/input"));
@@ -83,11 +66,11 @@ public class ContactHelper extends HelperBase{
     return wd.findElements(By.xpath("//td/input")).size();
   }
 
-  public void delete(int index) {
-    chooseCheckbox(index);
-    deleteSelectedContact();
-    closeTheDialog();
-    homePage();
+  public void createContact(ContactData contact) {
+    contactPage();
+    fillContactForm(contact);
+    submitContactCreation();
+    returnToHomePage();
   }
 
   public void delete(ContactData contact) {
@@ -104,20 +87,6 @@ public class ContactHelper extends HelperBase{
     submitContactModification();
     returnToHomePage();
   }
-
-  public List<ContactData> contactList() {
-    List<ContactData> contacts = new ArrayList<ContactData>();
-    List<WebElement> elements = wd.findElements(By.name("entry"));
-    for (WebElement element : elements) {
-      List<WebElement> cells = element.findElements(By.tagName("td"));
-      String name = cells.get(2).getText();
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      ContactData contact = new ContactData().withId(id).withName(name).withLastName(null).withPhone(null).withEmail(null);
-      contacts.add(contact);
-    }
-    return contacts;
-    }
-
 
   public Set<ContactData> all() {
     Set<ContactData> contacts = new HashSet<ContactData>();
