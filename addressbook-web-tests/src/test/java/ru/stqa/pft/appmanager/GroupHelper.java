@@ -43,6 +43,11 @@ public class GroupHelper extends HelperBase {
     click(By.xpath("//div[@id='content']/form/input[5]"));
   }
 
+  public void selectGroup(int index) {
+
+    wd.findElements(By.name("selected[]")).get(index).click();
+  }
+
   public void selectGroupById(int id) {
 
     wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
@@ -58,6 +63,7 @@ public class GroupHelper extends HelperBase {
     click(By.name("update"));
   }
 
+
   public void Create(GroupData group) {
     initGroupCreation();
     fillGroupForm(group);
@@ -72,8 +78,6 @@ public class GroupHelper extends HelperBase {
   }
 
   public void modify(GroupData group) {
-   selectGroupById(group.getId());
-   initGroupModification();
    fillGroupForm(group);
    submitGroupModification();
    returnToGroupPage();
@@ -87,6 +91,17 @@ public class GroupHelper extends HelperBase {
   public int getGroupCount() {
 
     return wd.findElements(By.name("selected[]")).size();
+  }
+
+  public List<GroupData> groupList() {
+    List<GroupData> groups = new ArrayList<GroupData>();
+    List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
+    for (WebElement element : elements) {
+        String name = element.getText();
+        int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+        groups.add(new GroupData().withId(id).withName(name));
+    }
+    return groups;
   }
 
   public Set<GroupData> all() {
