@@ -6,13 +6,16 @@ public class ContactData {
   private String name;
   private String lastName;
   private String phone;
-  private  String email;
+  private String email;
+  private String allPhones;
+  private String workPhone;
+  private String mobilePhone;
+  private String homePhone;
+  private String allEmails;
+  private String email2;
+  private String email3;
+  private String address;
   private int id=Integer.MAX_VALUE;
-  private  String homePhone;
-  private  String mobilePhone;
-  private  String workPhone;
-  private  String allPhones;
-  private  String allEmails;
 
   public ContactData withName(String name) {
     this.name = name;
@@ -21,11 +24,6 @@ public class ContactData {
 
   public ContactData withLastName(String lastName) {
     this.lastName = lastName;
-    return this;
-  }
-
-  public ContactData withHomePhone(String homePhone) {
-    this.homePhone = homePhone;
     return this;
   }
 
@@ -39,13 +37,13 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withMobilePhone(String mobilePhone) {
-    this.mobilePhone = mobilePhone;
+  public ContactData withEmail2(String email2) {
+    this.email2 = email2;
     return this;
   }
 
-  public ContactData withWorkPhone(String workPhone) {
-    this.workPhone = workPhone;
+  public ContactData withEmail3(String email3) {
+    this.email3 = email3;
     return this;
   }
 
@@ -54,6 +52,20 @@ public class ContactData {
     return this;
   }
 
+  public ContactData withHomePhone(String homePhone) {
+    this.homePhone = homePhone;
+    return this;
+  }
+
+  public ContactData withMobilePhone(String mobilePhonePhone) {
+    this.mobilePhone = mobilePhonePhone;
+    return this;
+  }
+
+  public ContactData withWorkPhone(String workPhonePhone) {
+    this.workPhone = workPhonePhone;
+    return this;
+  }
 
   public ContactData withEmail(String email) {
     this.email = email;
@@ -63,6 +75,18 @@ public class ContactData {
   public ContactData withId(int id) {
     this.id = id;
     return this;
+  }
+  public ContactData withAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  public  String getEmail2() {
+    return email2;
+  }
+
+  public  String getEmail3() {
+    return email3;
   }
 
   public String getName() {
@@ -83,16 +107,15 @@ public class ContactData {
 
     return allPhones;
   }
-  public String getHomePhone() {
-
+  public Object getHomePhone() {
     return homePhone;
   }
-  public String getMobilePhone() {
 
+  public Object getMobilePhone() {
     return mobilePhone;
   }
-  public String getWorkPhone() {
 
+  public Object getWorkPhone() {
     return workPhone;
   }
 
@@ -108,6 +131,9 @@ public class ContactData {
 
   public String getAllEmails() {
     return allEmails;
+  }
+  public String getAddress() {
+    return address;
   }
 
   @Override
