@@ -3,8 +3,6 @@ package SW.newPackage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static org.testng.AssertJUnit.assertEquals;
-
 public class PointTests {
   @Test
   public void distance() {
