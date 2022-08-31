@@ -1,5 +1,6 @@
 package ru.stqa.pft.model;
 
+import java.io.File;
 import java.util.Objects;
 
 public class ContactData {
@@ -16,6 +17,12 @@ public class ContactData {
   private String email3;
   private String address;
   private int id=Integer.MAX_VALUE;
+  private File photo;
+
+  public ContactData withPhoto(File photo) {
+    this.photo = photo;
+    return this;
+  }
 
   public ContactData withName(String name) {
     this.name = name;
@@ -80,6 +87,9 @@ public class ContactData {
     this.address = address;
     return this;
   }
+  public File getPhoto() {
+    return photo;
+  }
 
   public  String getEmail2() {
     return email2;
@@ -107,15 +117,15 @@ public class ContactData {
 
     return allPhones;
   }
-  public Object getHomePhone() {
+  public String getHomePhone() {
     return homePhone;
   }
 
-  public Object getMobilePhone() {
+  public String getMobilePhone() {
     return mobilePhone;
   }
 
-  public Object getWorkPhone() {
+  public String getWorkPhone() {
     return workPhone;
   }
 
