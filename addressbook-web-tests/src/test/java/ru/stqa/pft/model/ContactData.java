@@ -18,6 +18,8 @@ public class ContactData {
   private String address;
   private int id=Integer.MAX_VALUE;
   private File photo;
+  private String footer;
+  private String header;
 
   public ContactData withPhoto(File photo) {
     this.photo = photo;
@@ -83,10 +85,22 @@ public class ContactData {
     this.id = id;
     return this;
   }
+
   public ContactData withAddress(String address) {
     this.address = address;
     return this;
   }
+
+  public ContactData withHeader(String header) {
+    this.header = header;
+    return this;
+  }
+
+  public ContactData withFooter(String footer) {
+    this.footer = footer;
+    return this;
+  }
+
   public File getPhoto() {
     return photo;
   }
@@ -145,6 +159,17 @@ public class ContactData {
   public String getAddress() {
     return address;
   }
+  public String getFooter() {
+
+    return footer;
+  }
+
+  public String getHeader() {
+
+    return header;
+  }
+
+
 
   @Override
   public String toString() {

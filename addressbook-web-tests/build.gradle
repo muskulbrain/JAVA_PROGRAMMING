@@ -11,5 +11,6 @@ dependencies {
     implementation 'org.hamcrest:java-hamcrest:2.0.0.0'
     // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
     implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
+    implementation 'com.beust:jcommander:1.82'
 
 }
