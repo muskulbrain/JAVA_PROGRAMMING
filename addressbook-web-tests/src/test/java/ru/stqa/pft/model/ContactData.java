@@ -1,24 +1,44 @@
 package ru.stqa.pft.model;
 
 import java.io.File;
+import com.google.gson.annotations.Expose;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import java.util.Objects;
 
+@XStreamAlias("contact")
 public class ContactData {
-  private String name;
-  private String lastName;
-  private String phone;
-  private String email;
-  private String allPhones;
-  private String workPhone;
-  private String mobilePhone;
-  private String homePhone;
-  private String allEmails;
-  private String email2;
-  private String email3;
-  private String address;
+  @XStreamOmitField
   private int id=Integer.MAX_VALUE;
+  @Expose
+  private String name;
+  @Expose
+  private String lastName;
+  @Expose
+  private String phone;
+  @Expose
+  private String email;
+  @Expose
+  private String allPhones;
+  @Expose
+  private String workPhone;
+  @Expose
+  private String mobilePhone;
+  @Expose
+  private String homePhone;
+  @Expose
+  private String allEmails;
+  @Expose
+  private String email2;
+  @Expose
+  private String email3;
+  @Expose
+  private String address;
+  @Expose
   private File photo;
+  @Expose
   private String footer;
+  @Expose
   private String header;
 
   public ContactData withPhoto(File photo) {
