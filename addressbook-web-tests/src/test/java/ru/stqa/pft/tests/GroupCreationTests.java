@@ -52,7 +52,7 @@ public class GroupCreationTests extends TestBase {
     }
   }
 
-  @Test(dataProvider = "validGroupsFromJSon")
+  @Test(dataProvider = "validGroupsFromJson")
   public void testGroupCreation(GroupData group) {
 
     app.goTo().groupPage();

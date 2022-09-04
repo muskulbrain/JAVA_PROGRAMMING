@@ -55,11 +55,10 @@ public class ContactCreationTests extends TestBase {
     }
   }
 
-  @Test(dataProvider = "validContactsFromJson")
+  @Test(dataProvider = "validGroupsFromJson")
   public void testContactCreation(ContactData contact) {
-    app.goTo().contactPage();
     Contacts before = app.contact().all();
-
+    app.goTo().contactPage();
     app.contact().createContact(contact);
     assertThat(app.contact().count(), equalTo(before.size() + 1));
     Contacts after = app.contact().all();
