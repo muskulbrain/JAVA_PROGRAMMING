@@ -4,15 +4,26 @@ import java.io.File;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 import java.util.Objects;
 
 @XStreamAlias("contact")
+@Entity
+@Table (name = "addressbook")
 public class ContactData {
   @XStreamOmitField
+  @Id
+  @Column (name = "id")
   private int id=Integer.MAX_VALUE;
   @Expose
+  @Column(name = "firstname")
   private String name;
   @Expose
+  @Column(name = "lastname")
   private String lastName;
   @Expose
   private String phone;
@@ -21,10 +32,13 @@ public class ContactData {
   @Expose
   private String allPhones;
   @Expose
+  @Column(name = "work")
   private String workPhone;
   @Expose
+  @Column(name = "mobile")
   private String mobilePhone;
   @Expose
+  @Column(name = "home")
   private String homePhone;
   @Expose
   private String allEmails;
@@ -33,6 +47,7 @@ public class ContactData {
   @Expose
   private String email3;
   @Expose
+  @Column(name = "address")
   private String address;
   @Expose
   private File photo;
