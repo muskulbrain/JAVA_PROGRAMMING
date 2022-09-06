@@ -1,63 +1,79 @@
 package ru.stqa.pft.model;
 
-import java.io.File;
-import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
+import org.hibernate.annotations.Type;
+import javax.persistence.*;
+import java.io.File;
 import java.util.Objects;
 
 @XStreamAlias("contact")
 @Entity
-@Table (name = "addressbook")
+@Table(name = "addressbook")
 public class ContactData {
   @XStreamOmitField
   @Id
   @Column (name = "id")
   private int id=Integer.MAX_VALUE;
-  @Expose
+
   @Column(name = "firstname")
   private String name;
-  @Expose
+
   @Column(name = "lastname")
   private String lastName;
-  @Expose
-  private String phone;
-  @Expose
-  private String email;
-  @Expose
-  private String allPhones;
-  @Expose
+
+  @Type(type = "text")
   @Column(name = "work")
   private String workPhone;
-  @Expose
+
+  @Type(type = "text")
   @Column(name = "mobile")
   private String mobilePhone;
-  @Expose
+
+  @Type(type = "text")
   @Column(name = "home")
   private String homePhone;
-  @Expose
+
+  @Transient
+  private String group;
+
+  @Transient
+  private String phone;
+
+  @Type(type = "text")
+  @Column(name = "email")
+  private String email;
+
+  @Transient
+  private String allPhones;
+
+  @Transient
   private String allEmails;
-  @Expose
+
+  @Type(type = "text")
+  @Column(name = "email2")
   private String email2;
-  @Expose
+
+  @Type(type = "text")
+  @Column(name = "email3")
   private String email3;
-  @Expose
+
+  @Type(type = "text")
   @Column(name = "address")
   private String address;
-  @Expose
-  private File photo;
-  @Expose
+
+  @Type(type = "text")
+  @Column(name = "photo")
+  private String photo;
+
+  @Transient
   private String footer;
-  @Expose
+
+  @Transient
   private String header;
 
   public ContactData withPhoto(File photo) {
-    this.photo = photo;
+    this.photo = photo.getPath();
     return this;
   }
 
@@ -137,7 +153,7 @@ public class ContactData {
   }
 
   public File getPhoto() {
-    return photo;
+    return new File(photo);
   }
 
   public  String getEmail2() {
