@@ -36,6 +36,7 @@ public class HbConnectionTest {
             System.out.println(contact);
             //System.out.println(contact.getContact());
             //System.out.println();
+                    System.out.println(contact.getGroups());
         }
         session.getTransaction().commit();
         session.close();
